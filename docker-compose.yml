@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/backend
+    command: ["bun", "run", "backend/src/index.ts"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
